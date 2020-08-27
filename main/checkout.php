@@ -118,7 +118,7 @@ if($asas=='credit') {
 if($asas=='cash') {
 ?>
 
-<input type="number" name="cash" placeholder="Cash" style="width: 268px; height:30px;  margin-bottom: 15px;"  required/><br>
+<input type="date" name="cash" placeholder="Cash" style="width: 268px; height:30px;  margin-bottom: 15px;"  required/><br>
 <?php
 }
 ?><button class="btn btn-success btn-block btn-large" style="width:267px;"><i class="icon icon-save icon-large"></i> Save</button>
