@@ -95,19 +95,25 @@ showtime();
 window.onload=startclock;
 // End -->
 </SCRIPT>
+
 <body>
 <?php include('navfixed.php');?>
 <div class="container-fluid">
       <div class="row-fluid">
 	
 	<div class="span10">
-	
+	<div class="contentheader">
+			<i class="icon-table"></i> Suppliers
+			</div>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> /
+			<li class="active">Suppliers</li>
+			</ul>
+
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-<input type="button"  class="btn btn-info icon-print icon-large" onclick="printDiv('printableArea')" value="print products list!"  style="margin-left:700px;font-size:20x; "/>
-
-
+<a href="#" onclick="printPage('prodlist');" style="float:right;" class="btn btn-info"><i class="icon-print icon-large"></i> Print List</a>
 
 <script type="text/javascript">
 function printDiv(divName) {
@@ -123,13 +129,34 @@ function printDiv(divName) {
 </script>
 
 
-</div>
-<?php 
+
+			
+			<?php 
 			include('../connect.php');
 				$result = $db->prepare("SELECT * FROM supliers ORDER BY suplier_id DESC");
 				$result->execute();
 				$rowcount = $result->rowcount();
 			?>
+
+				<div style="text-align:center;">
+			Total Number of Suppliers:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
+			</div>
+			
+			<div style="text-align:center;">
+			<font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font> Supplier are below QTY of 10 
+			</div>
+</div>
+
+
+
+<input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search Product..." autocomplete="off" />
+<a rel="facebox" href="addsupplier.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Supplier</button></a><br><br><br/>
+
+
+
+
+</div>
+
 		
 </div>
 <br><br/>

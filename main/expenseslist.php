@@ -100,7 +100,7 @@ POS
 			<td><?php echo $row['date']; ?></td>
 			<td><?php echo $row['amount']; ?></td>
 			<td><?php echo $row['remarks']; ?></td>
-			<td><a rel="facebox" href="view_purchases_list.php?iv=<?php echo $row['invoice_number']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
+			<td><a rel="facebox" href="view_purchases_list.php?iv=<?php echo $row['expense_id']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
 			<a href="#" id="<?php echo $row['expense_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete </button></a></td>
 			</tr>
 			<?php

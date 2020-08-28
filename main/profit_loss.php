@@ -100,14 +100,19 @@ POS
 
 
 			//Connect to mysql server and selecting db
-			require '../conn2.php';
+		
 
-			 $resulta = mysql_query("SELECT sum(amount) as value_sum FROM equity ORDER BY equity_id DESC ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
 
-			
-				echo $sum ?></td>
+			$result1 = $db->prepare("SELECT sum(amount) as value_sum FROM equity ORDER BY equity_id DESC ");
+			$result1->execute();
+
+			for($i=0; $row = $result1->fetch(); $i++){
+
+				echo $sum = $row['value_sum'];
+
+			}
+
+			 ?></td>
 	
 			</tr>
 
@@ -119,14 +124,18 @@ POS
 
 
 			//Connect to mysql server and selecting db
-			require '../conn2.php';
+		
 
-			 $resulta = mysql_query("SELECT sum(price) as value_sum FROM sales_order ORDER BY transaction_id DESC ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum1 = $row_sum['value_sum'];
+			$result1 = $db->prepare("SELECT sum(price) as value_sum FROM sales_order ORDER BY transaction_id DESC");
+			$result1->execute();
 
-			
-				echo $sum ?></td>
+			for($i=0; $row = $result1->fetch(); $i++){
+
+				echo $sum = $row['value_sum'];
+
+			}
+
+			?></td>
 	
 			</tr>
 
@@ -178,15 +187,19 @@ POS
 			<td><?php 
 
 		//Connect to mysql server and selecting db
-		require '../conn2.php';
+	
+		$result1 = $db->prepare("SELECT sum(amount) as value_sum FROM expenses");
+		$result1->execute();
 
+		for($i=0; $row = $result1->fetch(); $i++){
 
-			$resulta = mysql_query("SELECT sum(amount) as value_sum FROM expenses ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$tot_expense = $row_sum['value_sum'];
-
+			$tot_expense = $row['value_sum'];
 			$net_profit = $gross_profit -$tot_expense;
-				echo $net_profit ;
+			echo $net_profit ;
+
+		}
+
+			
 				
 				?></td>
 				

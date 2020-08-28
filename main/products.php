@@ -282,7 +282,13 @@ window.onload=startclock;
 			</td>	
 
 		  <td><a rel="facebox" title="Click to edit the product" href="editproduct.php?id=<?php echo $row['product_id']; ?>"><button class="btn btn-warning"><i class="icon-edit"></i> </button> </a>
-		  <a href="#" id="<?php echo $row['product_id']; ?>" class="delbutton" title="Click to Delete the product"><button class="btn btn-danger"><i class="icon-trash"></i></button></a></td>
+		
+
+		  <a href="#" id="<?php echo $row['product_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete</button></a>
+
+
+
+		</td>
 
 
 			</tr>
@@ -320,7 +326,7 @@ var info = 'id=' + del_id;
 
  $.ajax({
    type: "GET",
-   url: "deletecustomer.php",
+   url: "deleteproduct.php",
    data: info,
    success: function(){
    

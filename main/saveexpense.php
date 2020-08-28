@@ -1,7 +1,7 @@
 <?php
 session_start();
 //Connect to mysql server and selecting db
-require 'conn2.php';
+
 
 
 $date = $_POST['date'];
@@ -9,12 +9,30 @@ $item = $_POST['item'];
 $amount= $_POST['amount'];
 $remarks = $_POST['remarks'];
 
+
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "sales";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+} 
+
+
 // query
 $sql = "INSERT INTO expenses (date,item,amount,remarks) VALUES ('$date','$item','$amount','$remarks')";
-$q = mysql_query($sql) or die(mysql_error());
 
-
+if (mysqli_query($conn, $sql)) {
+   echo "New record created successfully";
+   echo "Error: " . $sql . "" . mysqli_error($conn);
+}
 
 header("location: expenseslist.php?iv=$item");
+
 
 ?>

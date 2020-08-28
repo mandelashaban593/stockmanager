@@ -81,10 +81,7 @@ POS
 		
 			<?php
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM sales_order ORDER BY transaction_id DESC");
-				$result->execute();
-
-				
+			
 
 
 				$result1 = $db->prepare("SELECT * FROM products ORDER BY product_id DESC");
@@ -104,8 +101,8 @@ POS
 			<td><?php echo $row['qty']*$row['price']; ?></td>
 			<td> </td>
 
-			<td><a rel="facebox" href="view_purchases_list.php?iv=<?php echo $row['invoice_number']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
-			<a href="#" id="<?php echo $row['transaction_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete </button></a></td>
+			<td><a rel="facebox" href="view_supplier_ledge_list.php?iv=<?php echo $row['product_id']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
+			<a href="#" id="<?php echo $row['product_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete </button></a></td>
 			</tr>
 			<?php 
 		}
@@ -126,36 +123,27 @@ POS
 			require '../conn2.php';
 
 
-			$resulta = mysql_query("SELECT sum(qty) as value_sum FROM products ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
+			$result1 = $db->prepare("SELECT sum(qty) as value_sum FROM products");
+			$result1->execute();
+			for($i=0; $row = $result1->fetch(); $i++){
 
-			
-			
-				echo $sum ;
-				
+				echo $sum = $row['value_sum'];
+
+
+			}
+
+
 				?></td>
 			<td><?php 
+				
+			$result1 = $db->prepare("SELECT sum(qty*price) as value_sum FROM products ORDER BY product_id DESC");
+			$result1->execute();
+			for($i=0; $row = $result1->fetch(); $i++){
 
-			$link = mysql_connect('localhost','root',"root");
-			if(!$link) {
-				die('Failed to connect to server: ' . mysql_error());
+				echo $sum = $row['value_sum'];
+
 			}
 
-			//Select database
-			$db = mysql_select_db('sales', $link);
-			if(!$db) {
-				die("Unable to select database");
-			}
-				
-
-			$resulta = mysql_query("SELECT sum(qty*price) as value_sum FROM products ORDER BY product_id DESC ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
-                
-			
-				echo $sum ;
-				
 				?></td>
 
 			<td></td>
@@ -195,7 +183,7 @@ var info = 'id=' + del_id;
 
  $.ajax({
    type: "GET",
-   url: "deletepppp.php",
+   url: "deletesupledger.php",
    data: info,
    success: function(){
    

@@ -80,16 +80,11 @@ POS
 		
 			<?php
 				include('../connect.php');
-				$result = $db->prepare("SELECT * FROM sales_order ORDER BY transaction_id DESC");
-				$result->execute();
-
 				
-
-
-				$result1 = $db->prepare("SELECT * FROM products ORDER BY product_id DESC");
+				$result1 = $db->prepare("SELECT * FROM sales_order ORDER BY transaction_id DESC");
 				$result1->execute();
 
-				for($i=0; $row = $result->fetch(); $i++){
+				for($i=0; $row = $result1->fetch(); $i++){
 
 					if($row['gen_name']){
 			?>
@@ -104,7 +99,7 @@ POS
 			<td></td>
 
 
-			<td><a rel="facebox" href="view_purchases_list.php?iv=<?php echo $row['invoice_number']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
+			<td><a rel="facebox" href="view_customer_ledger.php?iv=<?php echo $row['transaction_id']; ?>"> <button class="btn btn-primary btn-mini"><i class="icon-search"></i> View </button></a> 
 			<a href="#" id="<?php echo $row['transaction_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete </button></a></td>
 			</tr>
 			<?php 
@@ -126,13 +121,15 @@ POS
 			require '../conn2.php';
 
 
-			$resulta = mysql_query("SELECT sum(qty) as value_sum FROM sales_order ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
 
-			
-			
-				echo $sum ;
+			$result1 = $db->prepare("SELECT sum(qty) as value_sum FROM sales_order");
+			$result1->execute();
+			for($i=0; $row = $result1->fetch(); $i++){
+
+				echo $sum = $row['value_sum'];
+
+			}
+
 				
 				?></td>
 			<td><?php 
@@ -140,13 +137,14 @@ POS
 			//Connect to mysql server and selecting db
 			require '../conn2.php';
 
-			$resulta = mysql_query("SELECT sum(qty*price) as value_sum FROM sales_order ORDER BY transaction_id DESC ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
-                
-			
-				echo $sum ;
 				
+			$result1 = $db->prepare("SELECT sum(qty*price) as value_sum FROM sales_order ORDER BY transaction_id DESC");
+			$result1->execute();
+			for($i=0; $row = $result1->fetch(); $i++){
+
+				echo $sum = $row['value_sum'];
+
+			}
 				?></td>
 
 			<td></td>
@@ -186,7 +184,7 @@ var info = 'id=' + del_id;
 
  $.ajax({
    type: "GET",
-   url: "deletepppp.php",
+   url: "deletecustledg.php",
    data: info,
    success: function(){
    

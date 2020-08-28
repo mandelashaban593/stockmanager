@@ -192,16 +192,17 @@ function printDiv(divName) {
 			<td><?php 
 
 		//Connect to mysql server and selecting db
-		require '../conn2.php';
+		
 
+		$result1 = $db->prepare("SELECT sum(amount) as value_sum FROM assets");
+		$result1->execute();
 
-			$resulta = mysql_query("SELECT sum(amount) as value_sum FROM assets ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
+		for($i=0; $row = $result1->fetch(); $i++){
 
-			
-				echo $sum ;
-				
+			echo $sum = $row['value_sum'];
+
+		}
+
 				?></td>
 				<td></td>
 				<td></td>
@@ -209,15 +210,17 @@ function printDiv(divName) {
 			<td><?php 
 
 			//Connect to mysql server and selecting db
-		require '../conn2.php';
+		
+		$result1 = $db->prepare("SELECT sum(amount) as value_sum FROM liabilities ORDER BY transaction_id DESC");
+		$result1->execute();
+
+		for($i=0; $row = $result1->fetch(); $i++){
+
+			echo $sum = $row['value_sum'];
+
+		}
 				
 
-			$resulta = mysql_query("SELECT sum(amount) as value_sum FROM liabilities ORDER BY transaction_id DESC ") or die(mysql_error());
-			$row_sum = mysql_fetch_assoc($resulta);
-			$sum = $row_sum['value_sum'];
-
-			
-				echo $sum ;
 				
 				?></td>
 

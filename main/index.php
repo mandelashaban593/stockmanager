@@ -107,7 +107,7 @@ if($position=='cashier') {
               <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>              
 			<li><a href="products.php"><i class="icon-list-alt icon-2"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2"></i> Customers</a>                                    </li>
+			<li><a href="select_customers.php"><i class="icon-group icon-2"></i> Customers</a>                                    </li>
 			<li><a href="supplier.php"><i class="icon-group icon-2"></i> Suppliers</a>                                    </li>
 			
 	
@@ -150,7 +150,7 @@ if($position=='cashier') {
 
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br> Sales</a>               
 <a href="products.php"><i class="icon-list-alt icon-2x"></i><br> Products</a>      
-<a href="customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>     
+<a href="select_customers.php"><i class="icon-group icon-2x"></i><br> Customers</a>     
 <a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a> 
   
 
@@ -160,13 +160,9 @@ if($position=='cashier') {
 			if($position=="admin"){?>
 <a href="expenseslist.php"><i class="icon-group icon-2x"></i><br> Expenses </a> 
 <a href="supliers_ledger.php"><i class="icon-group icon-2x"></i><br> Suppliers Ledger </a>    
-<a href="customers_ledger.php"><i class="icon-group icon-2x"></i><br> Customers'  Ledger </a>  
+<a href="select_customers.php"><i class="icon-group icon-2x"></i><br> Customers'  Ledger </a>  
 <a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
 <?php }?>
-
-<a href="sup_prods.php"><i class="icon-group icon-2x"></i><br> Search Suppliers Products </a>  
-<a href="select_customers.php"><i class="icon-group icon-2x"></i><br> Search a customer </a>  
-<a href="search_asupplier.php"><i class="icon-group icon-2x"></i><br> Search a Supplier </a>  
 
 
 <a href="../index.php"><font color="red"><i class="icon-off icon-2x"></i></font><br> Logout</a> 
